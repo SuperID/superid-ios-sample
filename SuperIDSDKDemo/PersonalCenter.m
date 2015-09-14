@@ -46,9 +46,9 @@
 
 //   ************************************************************
 //
-//   当用户完成授权操作或者进入用户个人授权页面时，开发者需查询用户授权状态用
+//   当用户完成授权操作或者进入用户个人授权页面时，开发者需查询用户OpenID授权状态用
 //   于更新UI界面和切换绑定、解绑操作。方法如下
-//   - (void)queryCurrentUserAuthorizationStateWithUid:(NSString *)uid;
+//  - (void)queryCurrentUserAuthorizationStateWithOpenId:(NSString *)openId;
 //
 //   ************************************************************
 

@@ -117,8 +117,7 @@
 
 #pragma mark SuperIDSDK delegate
 
-- (void)superID:(SuperID *)sender userDidFinishLoginWithUserInfo:(NSDictionary *)userInfo withAppUid:(NSString *)uid error:(NSError *)error{
-    
+- (void)superID:(SuperID *)sender userDidFinishLoginWithUserInfo:(NSDictionary *)userInfo withOpenId:(NSString *)openId error:(NSError *)error{
     
     if (!error) {
         
@@ -137,6 +136,7 @@
         NSLog(@"loginView Error =%ld,%@",(long)[error code],[error localizedDescription]);
     }
 }
+
 
 
 - (void)resignTextField{
