@@ -69,7 +69,7 @@
     
     iconArray = [[NSArray alloc]initWithObjects:@"superid_demo_binding_wechat_ico_disable",@"superid_demo_binding_superid_ico_disable",@"superid_demo_binding_weibo_ico_disable", nil];
     nameArray = [[NSArray alloc]initWithObjects:@"微信",@"一登",@"新浪微博", nil];
-    functionArray = [[NSArray alloc]initWithObjects:@"人脸表情",@"人脸表情(隐藏版)", nil];
+    functionArray = [[NSArray alloc]initWithObjects:@"人脸表情",@"人脸表情(隐藏版)",@"人脸验证", nil];
     
     
     if (!self.appUserInfo) {
@@ -126,7 +126,7 @@
         
     }else if (section == 2){
         
-        return 2;
+        return 3;
         
     }else{
         
@@ -309,6 +309,29 @@
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             AdvancedFaceFeatureViewController *AdvancedFaceFeatureViewController = [storyboard instantiateViewControllerWithIdentifier:@"advancedFaceFeatureView"];
             [self presentViewController:AdvancedFaceFeatureViewController animated:YES completion:nil];
+        }else if (indexPath.row == 2){
+            
+            //采用present的方式弹出人脸验证的功能：
+            NSError *error = nil;
+            
+            id SIDFaceVerifyViewController = [[SuperID sharedInstance]obtainFaceVerifyViewControllerWithRetryCount:nil error:&error];
+            
+            
+            if (SIDFaceVerifyViewController) {
+                
+                [self presentViewController:SIDFaceVerifyViewController animated:YES completion:nil];
+                
+            }else{
+                
+                NSLog(@"loginView Error =%ld,%@",(long)[error code],[error localizedDescription]);
+                
+                //授权过期或者用户已经解除绑定
+                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                hud.mode = MBProgressHUDModeText;
+                hud.labelText = @"请先绑定一登";
+                hud.removeFromSuperViewOnHide = YES;
+                [hud hide:YES afterDelay:0.8];
+            }
         }
         
         
