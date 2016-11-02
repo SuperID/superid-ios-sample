@@ -27,3 +27,4 @@ DerivedData
 *.DS_Store
 */*.DS_Store
 SuperID-SDK-iOS/*
+SuperIDSDK/*
